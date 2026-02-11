@@ -11,11 +11,12 @@ namespace SpectreConsoleTEMPL
 
         public static string[] Choices = new string[]
         {
-                    "PDF AI Summariser",
-                    "Get Response",
-                    "Generate image",
-                    "IChatClient",
-                    "AddOllamaChatCompletion",
+            "Get Image as List<Color>",
+            "PDF AI Summariser",
+            "Get Response",
+            "Generate image - Does NOT work yet!",
+            "IChatClient",
+            "AddOllamaChatCompletion",
         };  
 
     }
