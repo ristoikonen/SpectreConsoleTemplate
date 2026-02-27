@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
     <PackageReference Include="GMap.NET.Core" Version="2.1.7" />
     <PackageReference Include="GMap.NET.WindowsForms" Version="1.7.5" />
     <PackageReference Include="Microsoft.Maui.Graphics" Version="11.0.0-preview.1.26107.1" />

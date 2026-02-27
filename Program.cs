@@ -37,6 +37,9 @@ public static class Program
         // present
         switch (scenario)
         {
+            case "CSV":
+                UseCSV.TestWrite();
+                break;
 
             case "Get Image as List<Color>":
 
