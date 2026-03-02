@@ -8,6 +8,7 @@ using SixLabors.ImageSharp.Formats;
 using SixLabors.ImageSharp.Formats.Jpeg;
 using Spectre.Console;
 using Spectre.Console.Cli;
+using SpectreConsoleTEMPL.Helpers;
 using System;
 using System.IO;
 using System.Net;
@@ -37,6 +38,13 @@ public static class Program
         // present
         switch (scenario)
         {
+            case "Settings":
+                AppSettingsManager settingsMgr = new AppSettingsManager();
+                settingsMgr.Current.SettingName1 = "Value1";
+                settingsMgr.Current.SettingName2 = 123;
+                settingsMgr.Save();
+                break;
+
             case "CSV":
                 UseCSV.TestWrite();
                 break;
@@ -84,9 +92,9 @@ public static class Program
                 break;
             case "Generate image":
                 string postcode = "2914";
-                //var imageUrl = @"https://maps.googleapis.com/maps/api/staticmap?sensor=false&size=600x600&maptype=map&visible=-35.171389,149.128889&zoom=15&key=AIzaSyBdIWfU6TpZTfvxllzk8sTMf_tlP_niLs0";
+                //var imageUrl = @"https://maps.googleapis.com/maps/api/staticmap?sensor=false&size=600x600&maptype=map&visible=-35.171389,149.128889&zoom=15&key=AIzaSyBdIWfU6TpZTfvxllzk8sTMf_tlP_niLs08";
                 var openImageUrl = @"https://www.openstreetmap.org/?edit_help=1#map=17/-35.193336/149.146029";
-                var yandexImageUrl = @"https://static-maps.yandex.ru/1.x/?ll=149.146029,-35.193336&z=16&size=600,600&l=map&pt=149.146029,-35.193336,pm2rdm";
+                //var yandexImageUrl = @"https://static-maps.yandex.ru/1.x/?ll=149.146029,-35.193336&z=16&size=600,600&l=map&pt=149.146029,-35.193336,pm2rdm";
 
                 // 1. Create a rectangle based on a center point and "buffer" (radius)
                 // Roughly 1 degree of Lat/Lng is ~111km, so 0.01 is about 1.1km
@@ -180,18 +188,14 @@ public static class Program
 
                             // Save the image to the output stream using the Jpeg format and encoder
                             image.Save(outputStream, encoder);
-
+ 
                             // Return the new JPG image from a byte array
                             //return outputStream.ToArray();
                             File.WriteAllBytes("output_image.jpg", outputStream.ToArray());
                         }
                     }
-
-
                     //var image6L = SixLabors.ImageSharp.Image.Load(barr, encoder);
-
                 }
-
 
                 using (HttpClient client = new HttpClient())
                 {

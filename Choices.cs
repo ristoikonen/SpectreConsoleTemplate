@@ -11,6 +11,7 @@ namespace SpectreConsoleTEMPL
 
         public static string[] Choices = new string[]
         {
+            "Settings",
             "CSV",
             "Get Image as List<Color>",
             "PDF AI Summariser",

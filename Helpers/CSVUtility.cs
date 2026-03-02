@@ -5,7 +5,7 @@ using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 
-namespace SpectreConsoleTEMPL;
+namespace SpectreConsoleTEMPL.Helpers;
 
 class UserSettings
 {
