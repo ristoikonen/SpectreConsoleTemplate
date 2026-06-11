@@ -15,7 +15,8 @@ internal class HttpGenericClient<T>(HttpClient _httpClient)
     /// <param name="contentsParams">Parameters of type application/json</param>
     /// <param name="token">Authorization header token, Note: string 'Bearer ' added in the front.</param>
     /// <returns>Data of model type T or default(T)</returns>
-    public async Task<T?> GetAsync(string requestUri, string hostHeader, Dictionary<string, string>? contentsParams = null, string token = "")
+    public async Task<T?> GetAsync(string requestUri, string hostHeader, 
+        Dictionary<string, string>? contentsParams = null, string token = "")
     {
         try
         {
@@ -27,12 +28,15 @@ internal class HttpGenericClient<T>(HttpClient _httpClient)
                 client.DefaultRequestHeaders.Add("Connection", "keep-alive");
                 if (token.Length > 0)
                     client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+
+                /*
                 if (contentsParams is not null)
                 {
                     var content = new FormUrlEncodedContent(contentsParams);
                     string paramAsJSON = System.Text.Json.JsonSerializer.Serialize(content);
                     var contents = new StringContent(paramAsJSON, Encoding.UTF8, "application/json");
                 }
+                */
 
                 HttpResponseMessage response = await client.GetAsync(requestUri);
                 if (response.IsSuccessStatusCode && response.Content is object)
@@ -41,18 +45,19 @@ internal class HttpGenericClient<T>(HttpClient _httpClient)
                     if(contentStream is not null)
                         return await System.Text.Json.JsonSerializer.DeserializeAsync<T>(contentStream);
                     else
-                        return default(T);
+                        return default; 
                 }
                 else
                 {
-                    return default(T);
+                    return default;
                 }
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
-            return default(T);
+            return default;
+            
         }
     }
 }
